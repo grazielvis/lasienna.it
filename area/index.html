@@ -57,10 +57,11 @@ h2.sez{font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-tr
 <header><h1><a href="/">LA SIENNA</a></h1><p>La vita di Rosa — un esperimento</p>
 <nav><a href="/">Adesso</a><a href="/diario.html">Diario</a><a href="/musica/">Musica</a><a href="/chi-sono.html">Chi sono</a><a href="/esperimento/">L'esperimento</a><a href="https://www.instagram.com/la_sienna_official/" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@la_sienna_official" rel="noopener">TikTok</a><a href="https://www.youtube.com/@la_sienna_official" rel="noopener">YouTube</a><a href="https://www.facebook.com/lasiennaofficial" rel="noopener">Facebook</a></nav></header>
 <main id="top"><article><p class="giorno">Area riservata</p><h2>Per chi vuole stare più vicino a Rosa</h2>
-<div id="fuori"><p>Iscriviti con la tua email: ti mando un link per entrare, senza password. Dentro trovi contenuti che non sono pubblici. Ricorda che Rosa è un'artista virtuale e questo è un esperimento sociale.</p>
+<div id="fuori"><p>Iscriviti con la tua email: ti mando un codice (e un link) per entrare, senza password. Dentro trovi contenuti che non sono pubblici. Ricorda che Rosa è un'artista virtuale e questo è un esperimento sociale.</p>
 <form id="form"><p><input id="email" type="email" required placeholder="la tua email" autocomplete="email" style="font:inherit;padding:8px 10px;width:100%;max-width:340px;border:1px solid var(--riga);border-radius:6px;background:var(--carta);color:var(--inchiostro)"></p>
 <p style="font-size:15px"><label><input id="consenso" type="checkbox"> Ho letto l'<a href="/privacy/">informativa</a> e acconsento al trattamento della mia email per accedere all'area riservata.</label></p>
-<p><button class="pill" type="submit">Inviami il link</button></p></form></div>
+<p><button class="pill" type="submit">Inviami il codice</button></p></form>
+<div id="codice-box" hidden><form id="codice-form"><p>Scrivi il codice a 6 cifre che trovi nell'email:</p><p><input id="codice" inputmode="numeric" autocomplete="one-time-code" maxlength="10" required placeholder="123456" style="font:inherit;letter-spacing:.2em;padding:8px 10px;width:100%;max-width:200px;border:1px solid var(--riga);border-radius:6px;background:var(--carta);color:var(--inchiostro)"></p><p><button class="pill" type="submit">Entra</button> <button class="pill" type="button" onclick="location.reload()">Ricomincia</button></p></form></div></div>
 <div id="dentro" hidden><p class="tc">ACCESSO COME <span id="chi"></span></p><div id="lista"></div>
 <p id="admin" hidden><a class="pill" href="/area/admin/">Pannello admin</a></p>
 <p><button class="pill" id="esci" type="button">Esci</button> <button class="pill" id="cancella" type="button">Cancella il mio account</button></p><p id="conf" hidden class="coll">Cancello la tua email e i tuoi dati dal sito. Non si può annullare.</p></div>
@@ -72,9 +73,16 @@ async function carica(s){el('chi').textContent=s.user.email;
  if(!r.data.length){box.textContent='Presto qui ci sarà qualcosa per te.';}
  r.data.forEach(function(x){var a=document.createElement('article');var h=document.createElement('h3');h.textContent=x.titolo;var p=document.createElement('p');p.style.whiteSpace='pre-wrap';p.textContent=x.corpo;a.appendChild(h);a.appendChild(p);box.appendChild(a)});
  var q=await sb.rpc('e_admin');if(q.data===true)el('admin').hidden=false}
+var emailInviata='';
 el('form').onsubmit=async function(e){e.preventDefault();if(!el('consenso').checked){msg('Serve il consenso per iscriverti.');return}
- var r=await sb.auth.signInWithOtp({email:el('email').value.trim(),options:{emailRedirectTo:location.origin+'/area/',data:{consenso_privacy:new Date().toISOString()}}});
- msg(r.error?'Qualcosa non ha funzionato. Riprova tra poco.':'Ti ho scritto: apri il link nell\'email per entrare (controlla anche lo spam).')};
+ emailInviata=el('email').value.trim();
+ var r=await sb.auth.signInWithOtp({email:emailInviata,options:{emailRedirectTo:location.origin+'/area/',data:{consenso_privacy:new Date().toISOString()}}});
+ if(r.error){msg('Qualcosa non ha funzionato. Riprova tra poco.');return}
+ el('form').hidden=true;el('codice-box').hidden=false;el('codice').focus();
+ msg('Ti ho scritto. Puoi scrivere qui il codice a 6 cifre (da qualunque dispositivo leggi l\'email), oppure aprire il link nello stesso browser. Controlla anche lo spam.')};
+el('codice-form').onsubmit=async function(e){e.preventDefault();
+ var r=await sb.auth.verifyOtp({email:emailInviata,token:el('codice').value.trim(),type:'email'});
+ if(r.error)msg('Codice non valido o scaduto. Controlla e riprova, oppure chiedi un nuovo codice.');};
 el('esci').onclick=async function(){await sb.auth.signOut();location.reload()};
 el('cancella').onclick=async function(){if(!el('conf').hidden){var r=await sb.rpc('cancella_mio_account');if(!r.error){await sb.auth.signOut();location.href='/'}else msg('Non riesco a cancellare ora. Scrivi a info@genesavision.com.')}else{el('conf').hidden=false;this.textContent='Sì, cancella definitivamente il mio account'}};
 sb.auth.onAuthStateChange(function(_e,s){mostra(s)});sb.auth.getSession().then(function(r){mostra(r.data.session)});})();</script></main>
