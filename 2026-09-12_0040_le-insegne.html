@@ -56,6 +56,8 @@ main.largo{max-width:1080px}
 .figura{position:relative;border-radius:14px;overflow:hidden;background:var(--carta2);aspect-ratio:4/5}.figura img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}.figura picture{display:block;height:100%}
 .tag{position:absolute;background:rgba(15,12,10,.72);color:#fff;font:11px/1.2 ui-monospace,Menlo,monospace;padding:6px 9px;border-radius:3px;letter-spacing:.04em;text-transform:uppercase}.tag:before{content:"";position:absolute;top:50%;width:26px;height:1px;background:#fff;opacity:.7}.tag.l:before{right:100%}.tag.r:before{left:100%}
 .tag.prod{background:var(--rosso);text-decoration:none;z-index:2}.tag.prod:hover{filter:brightness(1.15)}
+.hot{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:2px solid #fff;background:rgba(255,255,255,.15);cursor:zoom-in;z-index:3;padding:0;animation:ping 2.2s infinite}@keyframes ping{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}80%,100%{box-shadow:0 0 0 14px rgba(255,255,255,0)}}
+.zoom{display:none;position:absolute;z-index:4;left:12px;top:40%;width:min(240px,70%);background:var(--carta);color:var(--inchiostro);border-radius:12px;padding:10px;box-shadow:0 10px 30px rgba(0,0,0,.5)}.zoom img{width:100%;height:auto;border-radius:8px;display:block;aspect-ratio:1}.zoom p{margin:8px 0 0;font:12px/1.4 ui-monospace,Menlo,monospace}.figura.apri .zoom{display:block}
 .kicker{font:600 12px/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--rosso)}
 .hero h2{font-weight:400;font-size:clamp(34px,5vw,56px);line-height:1.06;margin:12px 0 16px}.hero h2 em{color:var(--rosso)}.hero .sub{font-size:19px;max-width:34em}
 .cta{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}.btn{display:inline-block;padding:11px 20px;border-radius:999px;text-decoration:none;font:600 14px/1 ui-monospace,Menlo,monospace;letter-spacing:.04em}.btn.p{background:var(--rosso);color:#fff}.btn.s{border:1px solid var(--inchiostro);color:var(--inchiostro)}
@@ -67,7 +69,7 @@ main.largo{max-width:1080px}
 .gal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.gal figure{margin:0}.gal img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:8px;display:block}.gal figcaption{font:11px/1.3 ui-monospace,Menlo,monospace;color:var(--grigio);margin-top:5px}.gal .grande{grid-column:span 2;grid-row:span 2}.gal .grande img{aspect-ratio:auto;height:calc(100% - 20px)}
 .casa{display:grid;grid-template-columns:2fr 1fr;gap:12px}.casa picture{display:block}.casa img{width:100%;height:100%;object-fit:cover;border-radius:10px;display:block;min-height:220px}.cap{font-size:15px;color:var(--grigio);font-style:italic;margin:8px 0 0}
 .adesso{display:grid;grid-template-columns:1.2fr 1fr;gap:26px;align-items:start}.adesso .card{background:var(--carta2);border-radius:12px;padding:20px 22px}.adesso .novita{margin:0}.adesso h2.sez:first-child{margin-top:0}
-@media (max-width:800px){.hero,.corpo,.adesso,.tre,.casa{grid-template-columns:1fr}.tag{display:none}}
+@media (max-width:800px){.hero,.corpo,.adesso,.tre,.casa{grid-template-columns:1fr}.tag{display:none}.tag.prod{display:block}}
 @media (max-width:520px){.testa{grid-template-columns:1fr}.testa img{max-width:260px}.brano h2{font-size:26px}.dati div{grid-template-columns:100px 1fr}}
 @media (max-width:520px){body{font-size:17px}header h1{font-size:32px}article h2{font-size:24px}}
 </style></head><body>
