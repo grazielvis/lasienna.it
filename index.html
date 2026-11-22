@@ -174,7 +174,7 @@ function luce(){var m=mins(),so=window.SOLE||{alba:'07:30',tramonto:'16:45'};ret
 function ripristina(){var l=window.__live;if(!l)return;$('cam').src=l.src;$('camn').textContent=l.nome;$('camfig').hidden=!l.vis;$('camno').hidden=l.vis;window.__live=null}
 var AUD=false,A=new Audio(),KEY={'CAM 01 · MONOLOCALE':'salotto','CAM 04 · INGRESSO':'ingresso','CAM 03 · CUCINA':'cucina','CAM 05 · BAR, BANCO':'bar','CAM 06 · STRADA':'strada'};A.loop=true;A.volume=.5;function aud(disp,L){var b=$('aud'),k=KEY[disp];if(!b)return;b.textContent=AUD?'🔇 Spegni l\'audio':'🔊 Ascolta la stanza';if(!AUD){if(!A.paused)A.pause();return}if(!k){A.pause();return}var src='/img/cam-audio-'+k+'_'+L+'.mp3';if(A.getAttribute('src')!==src){A.src=src}if(A.paused)A.play().catch(function(){})}
 window.__cams=function(){var cf=$('camfig'),im=$('cam'),n=$('camn'),no=$('camno'),cs=document.querySelectorAll('#cams .cam'),L=luce();
-if(view){if(n.textContent!==view&&!window.__live||(window.__live&&n.textContent!==view&&n.textContent!==window.__live.nome)){window.__live={nome:n.textContent,src:im.getAttribute('src'),vis:!cf.hidden}}
+if(view){if(!window.__live){window.__live={nome:n.textContent,src:im.getAttribute('src'),vis:!cf.hidden}}
 var v=V[view]&&V[view][L];if(v){if(im.getAttribute('src')!==v)im.src=v;n.textContent=view;cf.hidden=false;no.hidden=true}}
 var ln=view?(window.__live&&window.__live.vis?window.__live.nome:''):(!cf.hidden?n.textContent:'');
 for(var j=0;j<cs.length;j++){var nm=cs[j].dataset.n,on=nm===ln,t=cs[j].querySelector('img'),src=on?(view&&window.__live?window.__live.src:im.getAttribute('src')):(V[nm]&&V[nm][L]);if(src&&t.getAttribute('src')!==src)t.src=src;cs[j].classList.toggle('on',on);cs[j].classList.toggle('off',!on);cs[j].classList.toggle('sel',nm===view)}
