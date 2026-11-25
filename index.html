@@ -157,6 +157,11 @@ body.home main.largo{max-width:760px}
 .hm .mondo a{display:block;background:var(--carta2);border-radius:12px;padding:20px;text-decoration:none;color:inherit}.hm .mondo a:hover{outline:1px solid var(--rosso)}
 .hm .mondo b{display:block;font-weight:400;font-size:21px;margin-bottom:6px}.hm .mondo span{color:var(--grigio);font-size:15px;line-height:1.5}
 .hm .gv{background:var(--carta2);border-radius:14px;padding:clamp(20px,4vw,36px)}
+.hm .iscr{background:var(--carta2);border-radius:14px;padding:clamp(20px,4vw,34px);text-align:center}
+.hm .iscr form{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:14px 0 8px}
+.hm .iscr input[type=email]{flex:1 1 240px;max-width:420px;padding:14px 18px;border-radius:999px;border:1px solid var(--riga);background:var(--carta);color:var(--inchiostro);font:16px Georgia,serif}
+.hm .iscr button{padding:14px 26px;border-radius:999px;border:0;background:var(--rosso);color:#fff;font:700 15px/1 ui-monospace,Menlo,monospace;cursor:pointer}
+.hm .iscr small{display:block;color:var(--grigio);font-size:13px;line-height:1.5}.hm .iscr .esito{font-weight:700;margin-top:8px;min-height:1.4em}
 @media(max-width:760px){.hm .hero,.hm .due{grid-template-columns:1fr}.hm .mondo{grid-template-columns:1fr}.hm .b1,.hm .b2{flex:1 1 100%;text-align:center}}
 </style><div class="hm">
 <div class="hero"><div><picture><source type="image/webp" srcset="/img/copertina-nessuna-come-me.webp"><img src="/img/copertina-nessuna-come-me.jpg" alt="Copertina del singolo «Nessuna come me» di LA SIENNA" loading="lazy"></picture></div>
@@ -171,6 +176,18 @@ body.home main.largo{max-width:760px}
 <section><h2 class="s">Le canzoni</h2><div class="brani">
 <a href="/musica/nessuna-come-me/"><picture><source type="image/webp" srcset="/img/copertina-nessuna-come-me.webp"><img src="/img/copertina-nessuna-come-me.jpg" alt="Nessuna come me" loading="lazy"></picture><strong>Nessuna come me</strong><span>Singolo · 27 novembre 2026</span></a>
 <a href="/musica/non-divento-un-altra/"><picture><source type="image/webp" srcset="/img/copertina-non-divento-un-altra.webp"><img src="/img/copertina-non-divento-un-altra.jpg" alt="Non divento un&#x27;altra" loading="lazy"></picture><strong>Non divento un'altra</strong><span>Singolo</span></a></div></section>
+<section><div class="iscr"><h2 class="s">Ricevi il brano appena esce</h2>
+<p>Lascia la tua email: ti scriviamo solo per le uscite di LA SIENNA, niente altro.</p>
+<form id="fi" novalidate><input type="email" id="fe" placeholder="la tua email" autocomplete="email" required aria-label="La tua email"><button type="submit">Avvisami</button></form>
+<small><label><input type="checkbox" id="fc"> Acconsento a ricevere email da Genesa Vision Srls sulle uscite di LA SIENNA. Puoi cancellarti quando vuoi scrivendo a info@genesavision.com. <a href="/privacy/">Privacy</a></label></small>
+<div class="esito" id="fo" role="status"></div></div></section>
+<script>(function(){var f=document.getElementById("fi");if(!f)return;f.addEventListener("submit",function(e){e.preventDefault();var m=document.getElementById("fe").value.trim(),o=document.getElementById("fo");
+if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m)){o.textContent="Controlla l'email, sembra incompleta.";return}
+if(!document.getElementById("fc").checked){o.textContent="Per iscriverti serve spuntare il consenso.";return}
+o.textContent="Un attimo…";
+fetch("https://gtwylquxdyftdbhisiqc.supabase.co/rest/v1/lasienna_iscritti",{method:"POST",headers:{"Content-Type":"application/json","apikey":"sb_publishable_SMTo8p3w63l24G3KsTmB2g_gl9OzkeZ","Authorization":"Bearer sb_publishable_SMTo8p3w63l24G3KsTmB2g_gl9OzkeZ","Prefer":"return=minimal"},body:JSON.stringify({email:m,consenso:true,fonte:"home"})})
+.then(function(r){if(r.ok||r.status===409){o.textContent="Fatto! Ti avvisiamo noi 🤍";f.reset()}else{o.textContent="Non è andata: riprova tra poco."}})
+.catch(function(){o.textContent="Non è andata: riprova tra poco."})})})()</script>
 <section><h2 class="s">Seguila</h2><p>Video, anteprime e dietro le quinte arrivano per primi sui profili ufficiali.</p><div class="soc"><a href="https://www.instagram.com/la_sienna_official/" rel="noopener" target="_blank">Instagram</a><a href="https://www.tiktok.com/@la_sienna_official" rel="noopener" target="_blank">TikTok</a><a href="https://www.youtube.com/@la_sienna_official" rel="noopener" target="_blank">YouTube</a><a href="https://www.facebook.com/lasiennaofficial" rel="noopener" target="_blank">Facebook</a></div></section>
 <section><h2 class="s">Dentro il mondo di Rosa</h2><p>Oltre alla musica, la vita di Rosa va avanti in diretta: un esperimento sociale su cosa può essere un'artista virtuale oggi.</p><div class="mondo">
 <a href="/diario.html"><b>Il diario</b><span>Ogni giorno, quello che succede e quello che sente.</span></a>
