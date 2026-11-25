@@ -136,7 +136,7 @@ body.home main.largo{max-width:760px}
 .pt .cons{display:flex;gap:.7rem;align-items:flex-start;margin:1.3rem 0;padding:1rem;border:1px solid rgba(214,200,182,.3);border-radius:8px;font-size:.95rem}.pt .cons input{margin-top:.25rem;flex:none;width:1.2rem;height:1.2rem}
 .pt button{font:inherit;font-weight:700;background:#c8323b;color:#fff;border:0;border-radius:10px;padding:.85rem 1.4rem;cursor:pointer;width:100%}.pt button:disabled{opacity:.5}
 .pt .msg{margin-top:1rem;font-weight:700}.pt .piccolo{font-size:.85rem;opacity:.75;margin-top:1rem}
-</style><article class="pt"><h2>Partecipa alla classifica</h2>
+</style><div class="pt" style="display:block"><h2 style="margin-top:0">Partecipa alla classifica</h2>
 <p class="intro">Hai fatto un video con una canzone di LA SIENNA? Compila questo modulo per comparire nella classifica.</p>
 <form id="pt-f" data-testo="Acconsento che il mio video e il mio nome utente pubblico compaiano nella classifica di LA SIENNA su lasienna.it (con miniatura del video, nome utente e numero di salvataggi o visualizzazioni). Posso chiedere di essere tolto in qualsiasi momento scrivendo a info@genesavision.com.">
 <label for="pt-pf">Dove l'hai pubblicato?</label><select id="pt-pf" name="piattaforma"><option>TikTok</option><option>Instagram</option></select>
@@ -146,7 +146,7 @@ body.home main.largo{max-width:760px}
 <div class="cons"><input type="checkbox" id="pt-k" name="consenso"><label for="pt-k" style="font-weight:400;margin:0">Acconsento che il mio video e il mio nome utente pubblico compaiano nella classifica di LA SIENNA su lasienna.it (con miniatura del video, nome utente e numero di salvataggi o visualizzazioni). Posso chiedere di essere tolto in qualsiasi momento scrivendo a info@genesavision.com.</label></div>
 <button type="submit">Invia</button><div class="msg" id="pt-m" role="status"></div>
 <p class="piccolo">Conserviamo il link del video, il nome utente, la data e il testo che hai accettato, solo per gestire la classifica. Titolare: Genesa Vision Srls, Via Arturo Martini 74, 72100 Brindisi (BR). Per togliere il tuo video scrivi a <a href="mailto:info@genesavision.com">info@genesavision.com</a>. <a href="/privacy/">Informativa privacy</a>.</p></form>
-<p class="piccolo">LA SIENNA è un'artista virtuale creata con l'intelligenza artificiale da Genesa Vision. TikTok e Instagram non sponsorizzano né gestiscono questa classifica.</p></article><script>(function(){var f=document.getElementById('pt-f'),m=document.getElementById('pt-m');
+<p class="piccolo">LA SIENNA è un'artista virtuale creata con l'intelligenza artificiale da Genesa Vision. TikTok e Instagram non sponsorizzano né gestiscono questa classifica.</p></div><script>(function(){var f=document.getElementById('pt-f'),m=document.getElementById('pt-m');
 f.addEventListener('submit',function(ev){ev.preventDefault();var b=f.querySelector('button');
 if(!f.consenso.checked){m.textContent='Per partecipare devi spuntare la casella del consenso.';return}
 b.disabled=true;m.textContent='Invio in corso…';
